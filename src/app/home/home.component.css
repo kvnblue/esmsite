@@ -1,0 +1,38 @@
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  .demo-tab-group {
+    border: 1px solid #e8e8e8;
+  }
+  
+  .demo-tab-content {
+    padding: 16px;
+  }
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  .p { 
+    word-spacing: 10px;
+}
+.button-color {background-color: #e7e7e7;} /* Green */
+.table-header-font {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0px 5px 5px 5px;
+}
+.example-card {
+  max-width: 100%;
+}
+
+.example-header-image {
+  background-image: url('Tier_Def.jpg');
+  
+  max-width: 70%;
+  justify-content: center;
+}
+
+.mat-list-item {
+  float: right;
+}

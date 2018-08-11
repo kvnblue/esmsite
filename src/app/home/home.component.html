@@ -1,0 +1,202 @@
+﻿
+  <!-- <div class="panel panel-default">
+        <div class="panel-body">
+    
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-center">
+      
+        <a class="nav navbar-center"><h1>Employee Skill Metrics</h1></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+          
+          
+        </div>
+        
+        
+        <ul class="nav navbar-nav navbar-right">
+            
+            
+            
+            
+            <li ><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-out"><h5>Logout</h5></span></a></li>
+          
+          </ul>
+         
+         
+      </nav>
+      <div class="panel panel-default">
+          <div class="panel-body">
+      
+      <div class="container">
+      <ul class="nav nav-tabs nav-justified">
+          <li class="nav-item" >
+              <a class="nav-link active" data-toggle="tab" href="#all" role="tab" >All</a>
+              
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#prefoundation" role="tab" >Pre-Foundation</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href = "#foundation" role="tab" routerLink="/tab" routerLinkActive="active">Foundation</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href = "I" role="tab" routerLink="/tab" routerLinkActive="active">I</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href = "π" role="tab" routerLink="/tab" routerLinkActive="active">π</a>
+          </li>
+          <li role = "search">
+              
+                  <input type="text" class="form-control" placeholder="Search">
+            
+            </li>
+      </ul>
+    
+      <div class="tab-content">
+        <div class="tab-pane container active" id="all" >Hi</div>
+        <div class="tab-pane container fade" id="prefoundation">kalai</div>
+        <div class="tab-pane container fade" id="menu2">...</div>
+      </div>
+      
+      </div>  
+  </div>
+  </div> -->
+  <mat-toolbar color="primary">
+    <!-- <mat-list>
+        <mat-list-item>Employee Skill Metrics</mat-list-item>
+        <mat-divider [vertical]="true"></mat-divider>
+        <mat-list-item>Welcome {{currentUser.firstName}} !</mat-list-item>
+       
+         </mat-list> -->
+       <span><h1>Employee Skill Metrics | Welcome {{currentUser.firstName}} !</h1></span>
+        <!-- This fills the remaining space of the current row -->
+        <span class="example-fill-remaining-space"></span>
+        
+        <a mat-raised-button routerLink="/login">Logout</a>
+      </mat-toolbar>
+      <mat-card>
+        <mat-card-content>
+          <h2 class="example-h2"></h2>
+          <mat-tab-group class="demo-tab-group">
+            <mat-tab label="Employee List" class ="table-header-font">
+                                   
+              <div class ="demo-tab-content">
+                    <mat-form-field style="width:90%" >
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                            
+                          </mat-form-field>
+                          <span class="example-fill-remaining-space"></span>
+                          <button mat-raised-button class = "button-color" (click)="exportToExcel()"><a>Export</a></button>
+                          
+                          <table mat-table [dataSource]="dataSource"  matSort class="table table-striped">
+                          
+                            <!-- Position Column -->
+                            <!-- <ng-container matColumnDef="s_no">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header class ="table-header-font"> S.No </th>
+                              <td mat-cell *matCellDef="let element"> {{element.s_no}} </td>
+                            </ng-container> -->
+                          
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="emp_no">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header class ="table-header-font"> Emp No </th>
+                              <td mat-cell *matCellDef="let element"> {{element.emp_no}} </td>
+                            </ng-container>
+                          
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="ename">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header class ="table-header-font"> Emp Name </th>
+                              <td mat-cell *matCellDef="let element" class ="table-data-font "> {{element.ename}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="email">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header class ="table-header-font"> Emp Mail Id </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                            </ng-container>
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="level">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header class ="table-header-font"> Completed Level </th>
+                              
+                              <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="stack">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class ="table-header-font"> Completed Stack </th>
+                                
+                                <td mat-cell *matCellDef="let element"> {{element.stack}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="targetLevel">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header class ="table-header-font"> Next Target Level </th>
+                                  
+                                  <td mat-cell *matCellDef="let element"> {{element.targetLevel}} </td>
+                                </ng-container>
+                            <ng-container matColumnDef="targetStack">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header class ="table-header-font"> Next Target Stack </th>
+                                    <td mat-cell *matCellDef="let element"> 
+                                      <!--<mat-form-field floatLabel="never">
+                                        <input matInput [value]="element.stack" [(ngModel)]="element.stack">
+                                      </mat-form-field>  -->
+                                      <mat-form-field floatLabel="never">
+                                          <mat-select [(value)]="element.targetStack" placeholder="{{element.targetStack}}">
+                                              <mat-option value="Java">Java</mat-option>
+                                              <mat-option value="Testing">Testing</mat-option>
+                                              <mat-option value="Microsoft">Microsoft</mat-option>
+                                              <mat-option value="Analytics">Analytics</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                    </td>
+                            </ng-container>
+                            <ng-container matColumnDef="completion_date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header class ="table-header-font"> Level Completion Date </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.completion_date}} </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                          </table>
+                          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+              </div>
+            </mat-tab>
+            <mat-tab label="Tier Description">
+              <div class="demo-tab-content">
+                    <mat-card class="example-header-image">
+                           <mat-card-content> 
+                            <img mat-card-image src="Tier_Def.jpg" alt="Tier Definition">
+                            
+                           </mat-card-content>
+                          </mat-card>
+              </div>  
+            </mat-tab>
+           <!-- <mat-tab label="Pre-Foundation">
+              <div class="demo-tab-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                orci enim rutrum enim, vel tempor sapien arcu a tellus.
+              </div>  
+            </mat-tab>
+            <mat-tab label="Foundation">
+              <div class="demo-tab-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                orci enim rutrum enim, vel tempor sapien arcu a tellus.
+                <br />
+                <br />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+                In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                orci enim rutrum enim, vel tempor sapien arcu a tellus.
+              </div>  
+            </mat-tab>
+            <mat-tab label="I">
+              No content  
+            </mat-tab>
+            <mat-tab label="π">
+              No content  
+            </mat-tab> -->
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
